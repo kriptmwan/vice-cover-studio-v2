@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vice Coast — GTA-style Cover Studio</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header id="topbar">
+  <div class="brand"><span class="brand-mark">VC</span><span class="brand-name">VICE COAST</span><span class="brand-sub">cover studio</span></div>
+  <div class="top-actions">
+    <button id="btnUndo" type="button" title="Undo">↩ Undo</button>
+    <button id="btnRedo" type="button" title="Redo">↪ Redo</button>
+    <button id="btnShuffle" type="button" title="Random layout + grade">🎲 Surprise me</button>
+    <button id="btnExport" type="button" class="primary">⬇ Export PNG</button>
+  </div>
+</header>
+
+<main id="workspace">
+  <aside id="controls" aria-label="Cover controls">
+    <section class="panel" id="photosPanel">
+      <h2>1 · Photos</h2>
+      <p class="hint">Your photos stay on your machine — nothing is uploaded.</p>
+      <label class="upload-btn" for="fileInput">＋ Add your photos…</label>
+      <input id="fileInput" type="file" accept="image/*" multiple hidden>
+      <div id="photoTray" class="tray"></div>
+      <div class="sample-row">
+        <button id="btnSampleA" type="button">Load sample: Boulevard</button>
+        <button id="btnSampleB" type="button">Load sample: Pier</button>
+      </div>
+    </section>
+
+    <section class="panel" id="layoutPanel">
+      <h2>2 · Layout</h2>
+      <div id="layoutGrid" class="choice-grid"></div>
+    </section>
+
+    <section class="panel" id="gradePanel">
+      <h2>3 · Colour grade</h2>
+      <div id="gradeGrid" class="choice-grid"></div>
+      <label class="slider-row">Comic ink
+        <input id="inkRange" type="range" min="0" max="100" value="70">
+        <span id="inkVal">70</span>
+      </label>
+      <label class="slider-row">Halftone
+        <input id="halfRange" type="range" min="0" max="100" value="60">
+        <span id="halfVal">60</span>
+      </label>
+    </section>
+
+    <section class="panel" id="wordsPanel">
+      <h2>4 · Words</h2>
+      <label class="field">Title
+        <input id="titleInput" type="text" value="VICE COAST" maxlength="24">
+      </label>
+      <label class="field">Subtitle
+        <input id="subtitleInput" type="text" value="Neon nights &amp; golden days" maxlength="48">
+      </label>
+      <label class="field">Badge
+        <input id="badgeInput" type="text" value="SUNSET EDITION" maxlength="24">
+      </label>
+      <label class="slider-row">Heat
+        <input id="heatRange" type="range" min="0" max="5" step="1" value="5">
+        <span id="heatVal">★★★★★</span>
+      </label>
+    </section>
+
+    <section class="panel" id="panelPanel">
+      <h2>5 · Selected panel</h2>
+      <p class="hint" id="panelHint">Click a panel on the cover to select it.</p>
+      <label class="field">Photo in this panel
+        <select id="panelPhoto"></select>
+      </label>
+      <label class="slider-row">Zoom
+        <input id="zoomRange" type="range" min="50" max="250" value="100">
+        <span id="zoomVal">100%</span>
+      </label>
+      <label class="slider-row">Pan X
+        <input id="panXRange" type="range" min="-50" max="50" value="0">
+        <span id="panXVal">0</span>
+      </label>
+      <label class="slider-row">Pan Y
+        <input id="panYRange" type="range" min="-50" max="50" value="0">
+        <span id="panYVal">0</span>
+      </label>
+    </section>
+
+    <section class="panel" id="sizePanel">
+      <h2>6 · Export size</h2>
+      <div id="sizeGrid" class="choice-grid"></div>
+      <p class="hint">Square 1080×1080 · Portrait 1080×1350 · Wide 1920×1080</p>
+    </section>
+  </aside>
+
+  <section id="stage">
+    <div id="canvasWrap">
+      <canvas id="preview" width="960" height="540"></canvas>
+      <div id="stageHint">Click a panel to crop &amp; position it · Drag photos onto panels</div>
+    </div>
+    <div id="thumbStrip" class="thumb-strip" aria-label="Panels"></div>
+  </section>
+</main>
+
+<footer id="foot">
+  <span>Vice Coast Cover Studio — original art, original lettering. No game logos, artwork or fonts.</span>
+  <span id="statusLine">Ready — drop a photo to begin.</span>
+</footer>
+
+<script type="module" src="src/editor.js"></script>
+</body>
+</html>
